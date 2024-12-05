@@ -1,0 +1,385 @@
+1. What’s a Database?
+A database is a structured collection of data that is stored and managed electronically. It can hold a variety of information (like numbers, text, images, etc.) and allows for easy retrieval, manipulation, and management of that data. Databases help organizations and applications store large amounts of data in an organized manner, making it easy to search, update, and analyze.
+
+2. What’s a Relational Database?
+A relational database is a type of database that stores data in tables (also called relations) with rows and columns. Each table represents a specific entity, and each row represents a record, with columns representing attributes or fields of that entity. The power of relational databases comes from their ability to define relationships between different tables. For example, a database for a school might have one table for students and another for courses, and a relational database would allow you to link these tables together (e.g., which students are enrolled in which courses).
+
+Example of relational tables:
+Students Table: stores student information (e.g., ID, name, age).
+Courses Table: stores course information (e.g., course ID, name, instructor).
+Enrollments Table: relates students and courses (e.g., student ID, course ID).
+
+3. What Does SQL Stand For?
+SQL stands for Structured Query Language. It’s the standard language used to interact with relational databases. SQL is used to perform tasks like:
+
+Querying data (retrieving information from the database).
+Inserting, updating, and deleting data.
+Creating and modifying database structures (tables, indexes, etc.).
+Setting permissions and managing access.
+SQL is a declarative language, meaning you tell the database what you want, and the database figures out how to execute the request.
+
+4. What’s MySQL?
+MySQL is an open-source, relational database management system (RDBMS). It is one of the most popular databases in the world, often used in web applications and other systems. MySQL uses SQL to interact with the database and is known for its speed, reliability, and ease of use. MySQL is typically used for applications that need to store structured data in tables, with support for complex queries, transactions, and relationships between tables.
+
+MySQL is often used with web technologies like PHP, and is a core component of the LAMP stack (Linux, Apache, MySQL, PHP/Python/Perl).
+In summary:
+
+Database: A collection of data.
+Relational Database: A database that uses tables and defines relationships between them.
+SQL: A language used to manage and query relational databases.
+MySQL: A popular relational database management system (RDBMS) that uses SQL.
+Would you like to explore any of these topics further or dive into an example?
+
+
+
+How to create a database in MySQL
+To create a database in MySQL, you can follow these steps. First, you’ll need to have MySQL installed and running on your system, and you need access to the MySQL command line or a MySQL client (like MySQL Workbench, phpMyAdmin, or the command line).
+1. Log into MySQL
+Open your terminal (or MySQL Workbench) and log into MySQL with the following command:
+
+mysql -u root -p
+-u root: This specifies that you're logging in as the root user (the default admin user in MySQL).
+-p: This flag will prompt you for the password of the root user.
+After entering your password, you should be logged into the MySQL shell.
+2. Create the Database
+Once logged into MySQL, you can create a database by using the CREATE DATABASE statement:
+
+CREATE DATABASE my_database;
+Replace my_database with the desired name of your database.
+
+Example:
+
+CREATE DATABASE school;
+This command creates a new database named school.
+
+3. Use the Database
+After creating the database, you need to switch to that database to start adding tables and data. Use the USE statement:
+
+USE my_database;
+Example:
+
+USE school;
+Now, any subsequent commands will be executed in the school database.
+
+4. Show All Databases (Optional)
+If you want to see a list of all databases on your MySQL server, you can use the SHOW DATABASES command:
+
+SHOW DATABASES;
+
+5. Create Tables (Optional)
+After creating your database, you can start creating tables in it. Here's an example of creating a students table:
+
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    birth_date DATE
+);
+# This command creates a table named students with columns for student_id, first_name, last_name, and birth_date. The student_id column is set to automatically increment for each new student added.
+
+6. Exit MySQL
+When you’re done, you can exit the MySQL shell with the exit command:
+
+EXIT;
+
+Summary of Commands:
+sql
+Copy code
+-- Log in to MySQL:
+mysql -u root -p
+
+-- Create a database:
+CREATE DATABASE my_database;
+
+-- Use the database:
+USE my_database;
+
+-- Show all databases (optional):
+SHOW DATABASES;
+
+-- Create a table (optional):
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    birth_date DATE
+);
+
+-- Exit MySQL:
+EXIT;
+
+NB: If you're using MySQL Workbench or another graphical interface, you can perform these steps through a GUI where you can click options to create a database, define tables, and execute SQL queries.
+
+
+What does DDL and DML stand for?
+
+DDL and DML are two types of SQL (Structured Query Language) commands that are used to interact with databases. They define different categories of SQL operations:
+
+1. DDL: Data Definition Language
+DDL stands for Data Definition Language, and it refers to the SQL commands that define the structure of a database, including creating, altering, and deleting tables, schemas, and other database objects.
+
+Key DDL commands include:
+
+CREATE: Used to create new tables, databases, indexes, views, or other database objects.
+Example: CREATE TABLE students (id INT, name VARCHAR(100));
+ALTER: Used to modify an existing database object, such as adding or modifying a column in a table.
+Example: ALTER TABLE students ADD COLUMN age INT;
+DROP: Used to delete a database object, such as a table, view, or index.
+Example: DROP TABLE students;
+TRUNCATE: Used to delete all records from a table, but it doesn't remove the table structure itself.
+Example: TRUNCATE TABLE students;
+RENAME: Used to rename a database object like a table.
+Example: RENAME TABLE students TO pupils;
+DDL commands primarily focus on the structure of the database.
+
+2. DML: Data Manipulation Language
+DML stands for Data Manipulation Language, and it refers to SQL commands that deal with manipulating the data stored in the database. DML commands allow you to query, insert, update, and delete records in the database.
+
+Key DML commands include:
+
+SELECT: Used to retrieve data from one or more tables.
+Example: SELECT * FROM students;
+INSERT: Used to add new records to a table.
+Example: INSERT INTO students (id, name, age) VALUES (1, 'John Doe', 20);
+UPDATE: Used to modify existing records in a table.
+Example: UPDATE students SET age = 21 WHERE id = 1;
+DELETE: Used to remove records from a table.
+Example: DELETE FROM students WHERE id = 1;
+DML commands primarily focus on the data within the database, allowing you to perform operations like retrieving, inserting, updating, and deleting records.
+
+Key Differences:
+DDL is used for defining and modifying the structure of the database (tables, schemas, etc.).
+DML is used for manipulating the actual data in the database (selecting, inserting, updating, and deleting data).
+Example:
+Consider a database with a students table.
+
+To create the table (DDL):
+
+sql
+Copy code
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT
+);
+To insert data into the table (DML):
+
+
+INSERT INTO students (name, age) VALUES ('John Doe', 20);
+To query the data (DML):
+
+SELECT * FROM students;
+To modify the structure (DDL):
+
+
+ALTER TABLE students ADD COLUMN grade VARCHAR(2);
+So, in summary:
+
+DDL: Deals with the structure of the database.
+DML: Deals with the data within the database.
+
+
+How to perform these common SQL operations: creating or altering a table, and selecting, inserting, updating, and deleting data.
+
+1. Creating a Table (CREATE TABLE)
+To create a new table in MySQL, use the CREATE TABLE statement. You define the structure of the table by specifying the columns, their data types, and any constraints like primary keys.
+
+CREATE TABLE table_name (
+    column1_name column1_data_type,
+    column2_name column2_data_type,
+    ...
+    [table_constraints]
+);
+
+Example:
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    birth_date DATE
+);
+student_id: INT data type, with auto-increment enabled, and it is the primary key.
+first_name, last_name: VARCHAR(100) data type to store string values.
+birth_date: DATE data type to store the student's birthdate.
+
+2. Altering a Table (ALTER TABLE)
+You can use the ALTER TABLE statement to modify an existing table by adding, removing, or modifying columns, as well as changing table properties.
+
+ALTER TABLE table_name
+    ADD column_name column_data_type;
+or
+
+ALTER TABLE table_name
+    MODIFY COLUMN column_name new_column_data_type;
+
+ALTER TABLE table_name
+    DROP COLUMN column_name;
+Examples:
+Add a new column to an existing table:
+
+ALTER TABLE students
+ADD email VARCHAR(100);
+Modify an existing column (e.g., changing first_name length):
+
+ALTER TABLE students
+MODIFY COLUMN first_name VARCHAR(150);
+Drop a column from a table:
+
+ALTER TABLE students
+DROP COLUMN email;
+
+3. Selecting Data from a Table (SELECT)
+To retrieve data from a table, you use the SELECT statement. You can select specific columns, filter the results with WHERE, and order them with ORDER BY.
+
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition
+ORDER BY column_name;
+Example:
+Select all columns from the students table:
+
+SELECT * FROM students;
+Select specific columns (e.g., first_name and last_name):
+
+SELECT first_name, last_name FROM students;
+Select with a condition (e.g., students older than 18):
+
+SELECT * FROM students
+WHERE birth_date < '2005-01-01';
+Order the results by last_name:
+
+SELECT * FROM students
+ORDER BY last_name;
+
+4. Inserting Data into a Table (INSERT)
+To insert data into a table, use the INSERT INTO statement. You can insert a single row or multiple rows at once.
+
+Syntax:
+INSERT INTO table_name (column1, column2, ...)
+VALUES (value1, value2, ...);
+Example:
+Insert a single record:
+
+INSERT INTO students (first_name, last_name, birth_date)
+VALUES ('John', 'Doe', '2000-05-15');
+Insert multiple records:
+
+INSERT INTO students (first_name, last_name, birth_date)
+VALUES 
+  ('Jane', 'Smith', '2002-10-10'),
+  ('Emily', 'Johnson', '2001-12-01');
+5. Updating Data in a Table (UPDATE)
+To update existing data in a table, use the UPDATE statement. You can modify one or more columns for specific records, based on a condition.
+
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+Example:
+Update a record (e.g., changing the age of a student with student_id 1):
+
+    UPDATE students
+    SET first_name = 'Johnathan', last_name = 'Doe-Smith'
+    WHERE student_id = 1;
+    Update multiple records (e.g., changing all students’ last names):
+
+
+    UPDATE students
+    SET last_name = 'UpdatedLastName';
+(Note: This will update all records if no WHERE clause is specified!)
+
+6. Deleting Data from a Table (DELETE)
+To delete data from a table, use the DELETE FROM statement. You can delete specific rows using a condition or delete all rows from the table.
+
+Syntax:
+DELETE FROM table_name
+WHERE condition;
+Example:
+Delete a specific record (e.g., deleting a student with student_id 1):
+
+DELETE FROM students
+WHERE student_id = 1;
+Delete all records (be careful as this will remove all rows in the table):
+
+DELETE FROM students;
+Key Points to Remember:
+Always use a WHERE clause when updating or deleting data to avoid affecting the entire table.
+You don’t need to specify the column names when selecting all columns using SELECT *, but it’s a good practice to select only the columns you need.
+CREATE and ALTER commands modify the structure of the database, while SELECT, INSERT, UPDATE, and DELETE are used to work with the data inside the tables.
+
+
+SUBQUERIES
+A subquery is a SQL query that is embedded inside another SQL query. It allows you to perform complex operations by using the result of one query (the subquery) as an input for another query (the outer query). Subqueries are often used to retrieve values that are then used to filter or manipulate data in the outer query.
+
+Types of Subqueries:
+Single-Row Subquery: Returns a single value (one row, one column).
+Multi-Row Subquery: Returns multiple rows but only one column.
+Multi-Column Subquery: Returns multiple rows and multiple columns.
+Correlated Subquery: A subquery that references columns from the outer query.
+Syntax of Subqueries:
+A subquery is enclosed within parentheses () and can be used in various parts of a SQL statement, such as SELECT, INSERT, UPDATE, or DELETE.
+
+    SELECT column1, column2, ...
+    FROM table_name
+    WHERE column_name = (SELECT column_name FROM another_table WHERE condition);
+Example Use Cases for Subqueries:
+1. Single-Row Subquery in a WHERE Clause
+A subquery that returns a single value can be used in the WHERE clause to filter results. This is typically used for comparisons like =, <, >, etc.
+Example:
+Get the details of the student who has the highest grade.
+
+SELECT * FROM students
+WHERE student_id = (SELECT student_id FROM grades ORDER BY grade DESC LIMIT 1);
+The subquery (SELECT student_id FROM grades ORDER BY grade DESC LIMIT 1) finds the student_id with the highest grade.
+The outer query then retrieves the details of that student.
+
+2. Multi-Row Subquery in a WHERE Clause
+A subquery that returns multiple rows can be used in the WHERE clause with the IN operator.
+Example:
+Get all students who are enrolled in courses with IDs 1, 2, or 3.
+
+SELECT * FROM students
+WHERE student_id IN (SELECT student_id FROM enrollments WHERE course_id IN (1, 2, 3));
+The subquery (SELECT student_id FROM enrollments WHERE course_id IN (1, 2, 3)) returns a list of student_ids that are enrolled in those courses.
+The outer query then retrieves details of the students who have matching student_ids.
+
+3. Multi-Column Subquery
+A subquery can return multiple columns, and the outer query can compare these columns to values in the main table.
+Example:
+Find students whose first and last names match a certain combination of names in another table.
+
+SELECT * FROM students
+WHERE (first_name, last_name) = (SELECT first_name, last_name FROM applicants WHERE applicant_id = 100);
+The subquery (SELECT first_name, last_name FROM applicants WHERE applicant_id = 100) returns the first_name and last_name of the applicant with applicant_id 100.
+The outer query then retrieves the student who has the same first and last name.
+4. Correlated Subquery
+A correlated subquery is a subquery that references columns from the outer query. Unlike other subqueries, a correlated subquery is executed once for each row processed by the outer query.
+
+Example:
+Find students who have a higher grade than the average grade of all students in their department.
+SELECT first_name, last_name
+FROM students s
+WHERE grade > (SELECT AVG(grade) FROM students WHERE department = s.department);
+The subquery (SELECT AVG(grade) FROM students WHERE department = s.department) computes the average grade for each department.
+The outer query compares the student's grade (grade > ...) with the department's average grade and returns the students who satisfy this condition.
+
+5. Subquery in the FROM Clause (Inline View or Derived Table)
+A subquery can also be used in the FROM clause. This is often called an inline view or derived table. The result of the subquery is treated as a temporary table.
+
+Example:
+Get the average grade for each department.
+
+SELECT department, AVG(grade) AS avg_grade
+FROM (SELECT department, grade FROM students) AS subquery
+GROUP BY department;
+The subquery (SELECT department, grade FROM students) selects the necessary columns.
+The outer query calculates the average grade by department.
+
+Subquery vs. Joins:
+While subqueries are useful for some scenarios, joins (using INNER JOIN, LEFT JOIN, etc.) are often more efficient, especially when dealing with large datasets, as they perform the necessary matching without having to execute a separate query for each row.
+
+Key Points:
+A subquery is a query inside another query.
+Subqueries can be used in SELECT, INSERT, UPDATE, and DELETE statements.
+Subqueries can return single values, multiple rows, or even multiple columns.
+Correlated subqueries reference columns from the outer query, making them evaluated per row.
+A subquery can be used with IN, =, >, <, BETWEEN, etc.
